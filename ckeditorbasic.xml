@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" group="editors" version="3.2.0" method="upgrade">
+
+    <name>PLG_EDITORS_CKEDITORBASIC</name>
+    <author>Andy Kirk</author>
+    <authorEmail>andy.kirk@npeu.ox.ac.uk</authorEmail>
+    <authorUrl>https://www.npeu.ox.ac.uk</authorUrl>
+    <creationDate>February 2021</creationDate>
+    <copyright>(C) NPEU 2021</copyright>
+    <license>MIT License; see LICENSE.md</license>
+
+    <!--  The version string is recorded in the components table -->
+    <version>1.0.0</version>
+    <!-- The description is optional and defaults to the name -->
+    <description>PLG_EDITORS_CKEDITORBASIC_XML_DESCRIPTION</description>
+
+    <updateservers>
+        <!-- Note: No spaces or linebreaks allowed between the server tags -->
+        <server type="extension" name="NPEU: plg_ckeditorbasic Update Site">https://raw.githubusercontent.com/NPEU/plg_ckeditorbasic/main/update-manifest.xml</server>
+    </updateservers>
+
+    <files>
+		<filename plugin="ckeditorbasic">ckeditorbasic.php</filename>
+		<filename>index.html</filename>
+		<filename>box-icon.png</filename>
+		<filename>box-icon_hidpi.png</filename>
+		<filename>editor.css</filename>
+		<filename>editor-contents-user.css</filename>
+		<filename>jplugins.js</filename>
+		<filename>js-vars.php</filename>
+		<filename>setup.js</filename>
+		<filename>sticky-tools.css</filename>
+		<folder>ckeditor</folder>
+		<folder>ck_wym</folder>
+		<folder>jplugins</folder>
+        <folder>language</folder>
+	</files>
+    
+    <config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="jsfiles" type="textarea"
+					default=""
+					description="PLG_EDITORS_WYMEDITOR_FIELD_JSFILES_DESC"
+					label="PLG_EDITORS_WYMEDITOR_FIELD_JSFILES_LABEL"
+                    rows="5"
+				>
+				</field>
+			</fieldset>
+
+		</fields>
+	</config>
+
+</extension>
