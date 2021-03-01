@@ -16,15 +16,14 @@ var WYM = {
         }
     },
 
-    setup: function()
-    {
+    setup: function() {
         WYM.log('WYM::setup');
         
         // Require jQuery:
-        if (!window.jQuery) {
+        /*if (!window.jQuery) {
             WYM.log('No jQuery! WYM quitting...');
             return;
-        }
+        }*/
         
         // Require CKEDITOR:
         if (typeof(CKEDITOR) == 'undefined') {
@@ -85,8 +84,7 @@ var WYM = {
         });
     },
 
-    config: function(editor_name)
-    {
+    config: function(editor_name) {
         WYM.log('WYM::config');
         var editor = CKEDITOR.instances[editor_name];
         
@@ -110,7 +108,8 @@ var WYM = {
         
         // Add the content css:
         var contentsCss = editor.config.contentsCss;
-        if (!jQuery.isArray(contentsCss)) {
+        //if (!jQuery.isArray(contentsCss)) {
+        if (Array.isArray(contentsCss)) {
             editor.config.contentsCss = [contentsCss];
         }
         editor.config.contentsCss.push(WYM_BASEPATH + '/ck_wym_contents.css');
@@ -123,8 +122,7 @@ var WYM = {
         editor.config.removePlugins += removePlugins + 'stylescombo,format,showblocks';
     },
     
-    init: function(editor_name)
-    {
+    init: function(editor_name) {
         WYM.log('WYM::init');
         var editor = CKEDITOR.instances[editor_name];
         //WYM.log(editor);
@@ -152,9 +150,7 @@ var WYM = {
             el_b.firstChild.style.paddingTop = '2px';
             el_b.firstChild.nextSibling.firstChild.style.width = '90px';
         }
-    },
+    }
 }
 
-jQuery(function(){
-    WYM.setup();
-});
+WYM.setup();

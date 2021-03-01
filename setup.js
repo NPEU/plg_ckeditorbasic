@@ -13,19 +13,8 @@ __DIR__/ck_wym/ck_wym.js
 
 */
 
-
-/*
-Not sure how to set this on the autogrow plugin _after_ the editor is loaded, but keep this 
-calculation for now.
-var available_height = jQuery(document).height() 
-- (jQuery('#cke_jform_articletext').offset().top + jQuery('#cke_jform_articletext').height())
-- jQuery('#editor-xtd-buttons').height();
-*/
 console.log('Running CKEDITOR setup...');
-
-// Add the sticky css:
-//jQuery('head').append('<link rel="stylesheet" type="text/css" href="/plugins/editors/ckeditorbasic/sticky-tools.css">');
-        
+     
 CKEDITOR.on( 'dialogDefinition', function( evt ) {
     console.log('Setup::dialogDefinition');
     var dialogName = evt.data.name;
@@ -77,19 +66,8 @@ CKEDITOR.on( 'instanceReady', function( evt ) {
         toolbar         = toolbars[i];
         toolbar_buttons = toolbar.getElementsByClassName('cke_toolbar');
         tl              = toolbar_buttons.length;
-        //toolbar_buttons[tl-1].style.cssFloat = 'right';
-        //toolbar_buttons[tl-2].style.cssFloat = 'right';
     }
-    
-    // Sticky tools:
-    //jQuery("#editor-xtd-buttons").css('outline', '1px solid #f00');
-    //jQuery("#editor-xtd-buttons").sticky({bottomSpacing:33});
-    /* activate the fixedsticky polyfill */
-    // http://hackersome.com/p/pixelthing/fixed-sticky
-    /*jQuery(".cke_top.cke_reset_all").addClass('fixedsticky');
-    jQuery("#editor-xtd-buttons").addClass('fixedsticky');
-    FixedSticky.tests.sticky = true;
-    jQuery('.fixedsticky').fixedsticky();*/
+   
     
     
     /*var dataProcessor = editor.dataProcessor,
@@ -110,20 +88,9 @@ CKEDITOR.on( 'instanceReady', function( evt ) {
     }*/
     
     
-    /*contents = jQuery('.cke_wysiwyg_frame').contents().find('body').html();
-    contents = contents.replace(/cke:object/g, 'object');
-    jQuery('.cke_wysiwyg_frame').contents().find('body').html(contents);*/
-    //console.log(contents);
-    
-    /*evt.editor.on( 'dataReady', function( evt ) {
-        if (!jQuery('.cke_wysiwyg_frame')) {
-            return;
-        }
-        contents = jQuery('.cke_wysiwyg_frame').contents().find('body').html();
-        //contents = contents.replace(/cke:object/g, 'object');
-        //jQuery('.cke_wysiwyg_frame').contents().find('body').html(contents);
-        console.log(evt.editor);
-        //console.log(evt.data);
+    /*
+    evt.editor.on( 'dataReady', function( evt ) {
+        console.log('dataReady');
     });
     
     evt.editor.on( 'toDataFormat', function( evt ) {

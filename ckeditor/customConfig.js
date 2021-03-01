@@ -15,27 +15,6 @@
 // Allow <div>s inside <a>s (for SVG pattern):
 CKEDITOR.dtd.a.div = 1;
 
-jQuery(function(){
-    CKEDITOR.on('instanceCreated', function(e) {
-        console.log('::TEST::');
-
-        e.editor.on('configLoaded', function(e) {
-            console.log('::configLoaded::');
-        });
-
-        /*var editor_name = e.editor.name;
-
-        e.editor.on( 'toDataFormat', function( evt) {
-            console.log(evt.data.dataValue); // -> CKEDITOR.htmlParser.fragment instance
-        }, null, null, 12 );
-        e.editor.on( 'toHtml', function( evt) {
-            console.log(evt.data.dataValue); // -> CKEDITOR.htmlParser.fragment instance
-        }, null, null, 7 );
-
-
-        e.editor.filter.allow( 'object', 'SVG', true );*/
-    });
-});
 //console.log(CKEDITOR.dtd.blockquote);
 //console.log(!!CKEDITOR.dtd[ 'blockquote' ][ 'p' ]);
 //console.log('custom');
@@ -248,7 +227,16 @@ CKEDITOR.editorConfig = function( config ) {
     config.ignoreEmptyParagraph = false;
     config.fillEmptyBlocks = true;
     
-    jQuery('head').append('<link rel="stylesheet" type="text/css" href="/plugins/editors/ckeditorbasic/editor.css' + '">');
+    //jQuery('head').append('<link rel="stylesheet" type="text/css" href="/plugins/editors/ckeditorbasic/editor.css' + '">');
+    var head = document.head;
+    var link = document.createElement("link");
+
+    link.type = "text/css";
+    link.rel = "stylesheet";
+    link.href = "/plugins/editors/ckeditorbasic/editor.css";
+
+    head.appendChild(link);
+    console.log(head);
 };
 
 

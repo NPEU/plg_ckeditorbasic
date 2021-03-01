@@ -14,6 +14,10 @@ textarea.cke_dialog_ui_input_textarea {
     height: auto !important;
 }
 
+/* Hack to override StartCSS */
+.cke_combo_button.cke_combo_button {
+    background: #fff;
+}
 
 
 .cke_button_icon.cke_button__creatediv_icon {
