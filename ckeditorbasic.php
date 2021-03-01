@@ -54,19 +54,30 @@ class PlgEditorCKEditorBasic extends JPlugin
         #echo 'here'; exit;
         $document = JFactory::getDocument();
 		//$document->addStyleSheet(JUri::root() . $this->_basePath . '/ckeditor.css');
-        $script = '';
+        $script = array();
         if (strpos(JPATH_BASE, 'administrator') === false) {
-            $script = "\n\n" . 'jQuery(function() { ' . "\n" . 'var editors_i = 0;
-var editors_l = editors.length;
-//console.log(WYM);
-//console.log(CKEDITOR);
-for (editors_i; editors_i < editors_l; editors_i++) {
-    //console.log(editors[editors_i]);
-    CKEDITOR.replace(editors[editors_i], {   
-        customConfig: \'customConfig.js\',
-    });
-}' . "\n});\n\n";
+            $script[] =  "\n\n";
+            $script[] = '    var ready = function(fn) {';
+            $script[] = '        if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {';
+            $script[] = '            fn();';
+            $script[] = '        } else {';
+            $script[] = '            document.addEventListener(\'DOMContentLoaded\', fn);';
+            $script[] = '        }';
+            $script[] = '    }';
+            $script[] =  "\n\n";
+            $script[] = '    ready(function() {';
+            $script[] = '        var editors_i = 0;';
+            $script[] = '        var editors_l = editors.length;';
+            $script[] = '        for (editors_i; editors_i < editors_l; editors_i++) {';
+            $script[] = '            CKEDITOR.replace(editors[editors_i], {   ';
+            $script[] = '                customConfig: \'customConfig.js\',';
+            $script[] = '            });';
+            $script[] = '        }';
+            $script[] = '    })';
         }
+        
+        $script = implode("\n", $script);
+            
         $script .= file_get_contents(__DIR__ . '/setup.js');
         $document->addScriptDeclaration($script);
         
