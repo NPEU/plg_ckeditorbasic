@@ -45,14 +45,20 @@ class PlgEditorCKEditorBasic extends JPlugin
 	 * @since 1.5
 	 */
 	public function onInit() {
-        
-        // This loads all the necessary JS for the Media viewer. It's not great that it's here, 
-        // baecause it's only used by the jimage plugin. However, there's nowehere else to put PHP
-        // since all CKEditor plugins are JS based.
-        JHtml::_('script', 'media/mediafield.min.js', array('version' => 'auto', 'relative' => true));
-        
-        #echo 'here'; exit;
         $document = JFactory::getDocument();
+        // This loads all the necessary JS for the Media viewer. It's not great that it's here, 
+        // because it's only used by the jimage plugin. However, there's nowhere else to put PHP
+        // since all CKEditor plugins are JS based.
+        // Mediafield required JQuery
+        
+        $app = JFactory::getApplication();
+        
+        if (!$app->isAdmin()) {
+            $document->addScript(JUri::root() . 'media/jui/js/jquery.min.js');
+            JHtml::_('script', 'media/mediafield.min.js', array('version' => 'auto', 'relative' => true));
+        }
+        #echo 'here'; exit;
+        
 		//$document->addStyleSheet(JUri::root() . $this->_basePath . '/ckeditor.css');
         $script = array();
         if (strpos(JPATH_BASE, 'administrator') === false) {
