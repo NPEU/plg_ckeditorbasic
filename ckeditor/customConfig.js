@@ -276,11 +276,12 @@ CKEDITOR.stylesSet.add( 'inline_styles', [
 
 CKEDITOR.stylesSet.add( 'div_styles', [
     // Div-level styles
-    { name: 'Notice Box',              element: 'div', attributes: { 'data-display-as': 'notice-box' } },
-    { name: 'Pale Box',                element: 'div', attributes: { 'data-display-as': 'pale-box' } },
-    { name: 'Themed Box (background)', element: 'div', attributes: { 'data-display-as': 'themed-box--background' } },
-    { name: 'Themed Box (border)',     element: 'div', attributes: { 'data-display-as': 'themed-box--border' } },
-    { name: 'Blocks Container',        element: 'div', attributes: { 'data-display-as': 'blocks' } }
+    { name: 'Notice Box',               element: 'div', attributes: { 'data-display-as': 'notice-box' } },
+    { name: 'Pale Box',                 element: 'div', attributes: { 'data-display-as': 'pale-box' } },
+    { name: 'Themed Box (background)',  element: 'div', attributes: { 'data-display-as': 'themed-box--background' } },
+    { name: 'Themed Box (border)',      element: 'div', attributes: { 'data-display-as': 'themed-box--border' } },
+    { name: 'Blocks Container',         element: 'div', attributes: { 'data-display-as': 'blocks' } },
+    { name: 'Blocks Container (large)', element: 'div', attributes: { 'data-display-as': 'blocks blocks-large' } }
 
 ]);
 
