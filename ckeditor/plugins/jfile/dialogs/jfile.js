@@ -57,10 +57,8 @@ CKEDITOR.dialog.add('jfileDialog', function(editor) {
                             if (cur_val == '') {
                                 return;
                             }
-                            
-                            console.log('cur_val', cur_val);
-                            
-                            var t = jQuery('#field-media-wrapper').attr('data-url') + this.getValue().replace(/.*\/downloads\//, '');
+
+                            var t = jQuery('#field-media-wrapper').attr('data-url') + cur_val.replace(/.*\/downloads\//, '');
                             var a = t.split('/');
                             a.pop();
                             t = a.join('/') + '/';
@@ -77,12 +75,7 @@ CKEDITOR.dialog.add('jfileDialog', function(editor) {
                         label: 'Link text',
                         inputStyle: 'margin: 0',
                         'default': '',
-                        validate: function() {
-                            if (!this.getValue()) {
-                                api.openMsgDialog( '', 'Text cannot be empty.' );
-                                return false;
-                            }
-                        },
+                        validate: CKEDITOR.dialog.validate.notEmpty( 'The Text field cannot be empty.' ),
                         setup: function(jfile_data) {
                             this.setValue(jfile_data.text);
                         }
