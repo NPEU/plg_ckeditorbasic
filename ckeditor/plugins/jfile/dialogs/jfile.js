@@ -51,7 +51,15 @@ CKEDITOR.dialog.add('jfileDialog', function(editor) {
                         },
                         onShow: function() {
                             // Update the url so that the correct folder is loaded into the
-                            // modal for better UX.
+                            // modal for better UX for existing files:
+                            var cur_val = this.getValue();
+                            
+                            if (cur_val == '') {
+                                return;
+                            }
+                            
+                            console.log('cur_val', cur_val);
+                            
                             var t = jQuery('#field-media-wrapper').attr('data-url') + this.getValue().replace(/.*\/downloads\//, '');
                             var a = t.split('/');
                             a.pop();
