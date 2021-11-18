@@ -280,6 +280,7 @@ CKEDITOR.stylesSet.add( 'div_styles', [
     { name: 'Pale Box',                 element: 'div', attributes: { 'data-display-as': 'pale-box' } },
     { name: 'Themed Box (background)',  element: 'div', attributes: { 'data-display-as': 'themed-box--background' } },
     { name: 'Themed Box (border)',      element: 'div', attributes: { 'data-display-as': 'themed-box--border' } },
+    { name: 'Breakout Box',             element: 'div', attributes: { 'data-display-as': 'breakout-box' } },
     { name: 'Blocks Container',         element: 'div', attributes: { 'data-display-as': 'blocks' } },
     { name: 'Blocks Container (large)', element: 'div', attributes: { 'data-display-as': 'blocks blocks-large' } }
 
