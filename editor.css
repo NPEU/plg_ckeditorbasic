@@ -39,6 +39,10 @@ textarea.cke_dialog_ui_input_textarea {
     cursor: pointer;
 }
 
+.cke_notifications_area {
+  z-index: 10050 !important;
+}
+
 /*
 .cke_toolbox {
     display: flex !important;
