@@ -11,6 +11,16 @@
 //CKEDITOR.dtd.$blockLimit['blockquote'] = 1;
 //CKEDITOR.dtd.i.br = 1;
 
+// Allow sections to be blocks so we can use those as wrappers, otherwise paragraphs are created 
+// when pressing ENTER, and paragaphs can't wrap FIGURES, which are often used as wrappers by
+// modules, so when using {loadposition} we get p > figure, which isn't allowed.
+// Example on page: https://www.npeu.ox.ac.uk/maathri/research/repeated-monthly-survey-of-severe-maternal-complications
+
+// NOTE this is still a bit broken, but it's possible to get the desired markup by wrapping the  
+// {loadposition} text in a noraml P, wrap that in a box, then change the P to a WRAPPER.
+
+//CKEDITOR.dtd.$inline['section'] = 1;
+//CKEDITOR.dtd.$blockLimit['div'] = 0;
 
 // Allow <div>s inside <a>s (for SVG pattern):
 CKEDITOR.dtd.a.div = 1;
@@ -58,12 +68,12 @@ CKEDITOR.editorConfig = function( config ) {
         { name: 'document',    groups: [ 'mode', 'document', 'doctools' ] },
         { name: 'about' }
     ];*/
-    
-    
+
+
     config.toolbar = [
         { name: 'Editing',   items: [ 'Undo', 'Redo' ] },
         { name: 'Align',     items: [ 'JustifyLeft', 'JustifyCenter', 'JustifyRight' ] },
-        { name: 'Inline',    items: [ 'Link', 'Unlink', '-', 'Superscript', 'Subscript', '-', 'SpecialChar' ] }, 
+        { name: 'Inline',    items: [ 'Link', 'Unlink', '-', 'Superscript', 'Subscript', '-', 'SpecialChar' ] },
         { name: 'Lists',     items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'DescriptionList' ] },
         { name: 'Blocks',    items: [ 'Blockquote', '-', 'Box', 'CreateDiv', '-', 'Expander', '-', 'Contact', '-', 'Table' ] },
         { name: 'Media',     items: [ 'JImage', '-', 'JFile', '-', 'YouTube' ] },
@@ -73,14 +83,14 @@ CKEDITOR.editorConfig = function( config ) {
         { name: 'Source',    items: [ 'Source' ] }
 
     ];
-    
-    
+
+
     /*
         { name: 'Links', items: [ 'Link', 'Unlink' ] },
         { name: 'Position', items: [ 'Superscript', 'Subscript' ] },
         { name: 'Special', items: [ 'SpecialChar' ] },
     */
-    
+
     /*config.toolbarGroups = [
         { name: 'editing',     groups: [ 'undo', 'find', 'selection', 'spellchecker' ] },
         { name: 'forms' },
@@ -90,7 +100,7 @@ CKEDITOR.editorConfig = function( config ) {
         { name: 'insert',      groups: ['blocks'] },
         { name: 'styles' },
         { name: 'wymstyles' },
-        { name: 'colors' }, 
+        { name: 'colors' },
         { name: 'others' },
         { name: 'tools' },
         { name: 'document',    groups: [ 'mode', 'document', 'doctools' ] },
@@ -103,7 +113,7 @@ CKEDITOR.editorConfig = function( config ) {
     // Dialog windows are also simplified.
     //config.removeDialogTabs = 'link:advanced;link:target;editdiv:advanced';
     //config.removeDialogTabs = 'link:advanced;link:target;creatediv:advanced;editdiv:advanced';
-    
+
     // ** FOR LIVE, for now, REMOVE LINK TABS **
     config.removeDialogTabs = 'div:advanced;link:advanced;link:target;link:upload';
 
@@ -128,7 +138,7 @@ CKEDITOR.editorConfig = function( config ) {
     //config.filebrowserUploadUrl = '/plugins/editors/ckeditorbasic/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
 
     // Note some of these can be deleted once development is complete and the build up to date:
-    // Plugins that aren't released on the CKEditor site still need to be here as they can't be 
+    // Plugins that aren't released on the CKEditor site still need to be here as they can't be
     // packaged up into main build.
 
     //config.extraPlugins  = 'youtube';
@@ -141,12 +151,12 @@ CKEDITOR.editorConfig = function( config ) {
     //config.removePlugins = 'link,fakeobjects';
     //config.removePlugins = 'stylescombo,format';
     config.removePlugins = 'image,image2,pastetext,preview,uploadfile.uploadimage';
-   
+
     //Sticky//config.removePlugins = 'resize';
 
     //Sticky//config.autoGrow_onStartup = true;
-    
-    
+
+
     //config.image2_alignClasses = [ 'image-left', 'image-center', 'image-right' ];
 
     // @TODO - tighten this up to specify all actual attributes for video markup.
@@ -190,15 +200,15 @@ CKEDITOR.editorConfig = function( config ) {
 
 
     config.specialChars = [
-        ['&le;', "Less-than or equal to"], ['&ge;', "Greater-than or equal to"], '&times;', '&divide;', ['&plusmn;', "Plus-minus"], '&asymp;', ['&ne;', "Not equal to"], ['&#x2243;', " Asymptotically equal to"], '&deg;', 
+        ['&le;', "Less-than or equal to"], ['&ge;', "Greater-than or equal to"], '&times;', '&divide;', ['&plusmn;', "Plus-minus"], '&asymp;', ['&ne;', "Not equal to"], ['&#x2243;', " Asymptotically equal to"], '&deg;',
         '&euro;', '&cent;',
         '&ndash;', '&mdash;', '&hellip;', ['&#x22ee;', 'Vertical ellipsis'], '&iexcl;', '&iquest;',
         '&copy;', '&reg;', '&trade;', '&laquo;', '&raquo;', '&micro;', '&sect;', '&para;', '&middot;', '&frac14;', '&frac12;', '&frac34;', '&#9658;', '&bull;', ['&#9632;', "Black square"], ['&#9633;', "White square"], ['&#10003;', "Check mark"],
         '&Agrave;', '&Aacute;', '&Acirc;', '&Atilde;', '&Auml;', '&Aring;', '&AElig;', '&Ccedil;', '&Egrave;', '&Eacute;', '&Ecirc;', '&Euml;', '&Igrave;', '&Iacute;', '&Icirc;', '&Iuml;', '&ETH;', '&Ntilde;', '&Ograve;', '&Oacute;', '&Ocirc;', '&Otilde;', '&Ouml;', '&Oslash;', '&Ugrave;', '&Uacute;', '&Ucirc;', '&Uuml;', '&Yacute;', '&THORN;', '&szlig;', '&agrave;', '&aacute;', '&acirc;', '&atilde;', '&auml;', '&aring;', '&aelig;', '&ccedil;', '&egrave;', '&eacute;', '&ecirc;', '&euml;', '&igrave;', '&iacute;', '&icirc;', '&iuml;', '&eth;', '&ntilde;', '&ograve;', '&oacute;', '&ocirc;', '&otilde;', '&ouml;', '&oslash;', '&ugrave;', '&uacute;', '&ucirc;', '&uuml;', '&yacute;', '&thorn;', '&yuml;', '&OElig;', '&oelig;', '&#372;', '&#374', '&#373', '&#375;',
         ['&#8304;', "Superscript zero"], '&sup1;', '&sup2;', '&sup3;', ['&#8308;', "Superscript four"], ['&#8309;', "Superscript five"], ['&#8310;', "Superscript six"], ['&#8311;', "Superscript seven"], ['&#8312;', "Superscript eight"], ['&#8313;', "Superscript nine"],
-        ['&#7491;', "Superscript a"], ['&#7495;', "Superscript b"], ['&#7580;', "Superscript c"], ['&#7496;', "Superscript d"], ['&#7497;', "Superscript e"], ['&#7584;', "Superscript f"], ['&#7501;', "Superscript g"] 
+        ['&#7491;', "Superscript a"], ['&#7495;', "Superscript b"], ['&#7580;', "Superscript c"], ['&#7496;', "Superscript d"], ['&#7497;', "Superscript e"], ['&#7584;', "Superscript f"], ['&#7501;', "Superscript g"]
     ];
-    
+
     // It's a shame it's not easy to convert these to data- attributes. Leaving them as classes for now.
     config.justifyClasses = [ 'u-text-align--left', 'u-text-align--center', 'u-text-align--right', 'u-text-align--justify' ];
 
@@ -210,23 +220,23 @@ CKEDITOR.editorConfig = function( config ) {
 
     // Changes the keyboard shortcut to Ctrl + ",".
     //CKEDITOR.config.magicline_keystrokePrevious = CKEDITOR.ALT + CKEDITOR.CTRL + 38;
-    
+
     //{table:1,hr:1,div:1,ul:1,ol:1,dl:1,form:1,blockquote:1}
     //config.magicline.triggers = {figure:1,table:1,hr:1,div:1,ul:1,ol:1,dl:1,form:1,blockquote:1};
 
     //var specialCharsLang = CKEDITOR.plugins.getLang("specialchar","en-gb");
     //console.log(specialCharsLang);
-    
+
     //config.pasteFilter = 'semantic-content';
     //config.pasteFilter = 'plain-text';
     //config.pasteFromWordPromptCleanup = true;
     config.pasteFromWordRemoveStyles = true;
     config.pasteFromWord_inlineImages = false;
-    
+
     config.entities_additional = '';
     config.ignoreEmptyParagraph = false;
     config.fillEmptyBlocks = true;
-    
+
     //jQuery('head').append('<link rel="stylesheet" type="text/css" href="/plugins/editors/ckeditorbasic/editor.css' + '">');
     var head = document.head;
     var link = document.createElement("link");
@@ -263,7 +273,8 @@ CKEDITOR.stylesSet.add( 'block_styles', [
     { name: 'Heading 5',   element: 'h5' },
     { name: 'Heading 6',   element: 'h6' },
     { name: 'Strapline' ,  element: 'p', attributes: { 'data-display-as': 'strapline' } },
-    { name: 'Smallprint' , element: 'p', attributes: { 'data-display-as': 'smallprint' } }
+    { name: 'Smallprint' , element: 'p', attributes: { 'data-display-as': 'smallprint' } },
+    { name: 'Wrapper' ,    element: 'section' }
 ]);
 
 CKEDITOR.stylesSet.add( 'inline_styles', [

@@ -208,7 +208,7 @@
 
 .cke_editable > div:not([class*="cke_widget"])::before,
 .cke_editable div[data-display-as="box"]::before {
-    content: "BOX" !important;
+    content: "WRAPPER" !important;
 }
 
 .cke_editable div[data-display-as="pale-box"]::before {
@@ -233,6 +233,19 @@
 .cke_editable div[data-display-as="themed-box  expandable"]::before {
     content: "EXPANDABLE THEMED BOX" !important;
 }
+
+.cke_editable div[data-display-as="breakout-box"]::before {
+    content: "BREAKOUT BOX" !important;
+}
+
+.cke_editable div[data-display-as="blocks"]::before {
+    content: "BLOCKS CONTAINER" !important;
+}
+
+.cke_editable div[data-display-as="blocks blocks-large"]::before {
+    content: "BLOCKS CONTAINER (LARGE)" !important;
+}
+
 
 
 .cke_editable blockquote {
@@ -335,6 +348,12 @@
     content: "P" !important;
 }
 
+
+.cke_editable section::before {
+    content: "WRAPPER" !important;
+}
+
+
 /*
 .cke_editable p[data-varient]::before {
     content: "P (" attr(data-varient) ")" !important;
@@ -361,3 +380,13 @@
     font-weight: bold !important;
 }
 
+
+
+
+.c-user-content [data-display-as~="box"]::after,
+.c-user-content [data-display-as~="pale-box"]::after,
+.c-user-content [data-display-as~="themed-box--background"]::after,
+.c-user-content [data-display-as~="themed-box--border"]::after,
+.c-user-content [data-display-as~="notice-box"]::after {
+    display: none;
+}
