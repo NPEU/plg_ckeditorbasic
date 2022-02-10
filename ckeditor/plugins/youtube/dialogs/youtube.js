@@ -36,6 +36,7 @@ CKEDITOR.dialog.add('youtubeDialog', function(editor) {
                         id: 'src',
                         label: 'YouTube video URL',
                         inputStyle: 'margin: 0',
+                        default: 'https://www.youtube.com/embed/YOUTUBE_ID_HERE',
                         setup: function(youtube_data) {
                             this.setValue(youtube_data.src);
                         }

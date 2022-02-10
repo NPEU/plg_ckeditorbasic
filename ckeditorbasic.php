@@ -154,7 +154,7 @@ class PlgEditorCKEditorBasic extends JPlugin
             /*foreach ($vars as $name => $value) {
                 $script .= "var $name = $value;\n";
             }*/
-            $script .= "    CKEDITOR.timestamp='202111181007';
+            $script .= "    CKEDITOR.timestamp='202202101430';
         jQuery(function() {
         CKEDITOR.replace('" . $name . "', {   
             customConfig: 'customConfig.js',
