@@ -302,7 +302,7 @@ CKEDITOR.dialog.add('jimageDialog', function(editor) {
 
                 // Image:
                 var is_svg = false;
-                
+
                 // Get image info:
                 var img_info = JSON.parse(CKEDITOR.ajax.load(jimage_src + '.json'));
                 img_info.image_ratio = img_info.image_width / img_info.image_height;
@@ -314,12 +314,8 @@ CKEDITOR.dialog.add('jimageDialog', function(editor) {
 
                     if (svg !== null && svg.match(/^<svg/)) {
                         img_info.adj_height = 80;
-                        if (img_info.image_width > img_info.image_height) {
-                            img_info.adj_width = Math.round(img_info.adj_height * img_info.image_ratio);
-                        } else {
-                            img_info.adj_width = Math.round(img_info.adj_height / img_info.image_ratio);
-                        }
-                        
+                        img_info.adj_width = Math.round(img_info.adj_height * img_info.image_ratio);
+
                         jimage_html.push('  <img src="' + jimage_svg_src + '" onerror="this.src=\'' + jimage_src + '\'; this.onerror=null;" alt="' + jimage_alt + '" width="' + img_info.adj_width + '" height="' + img_info.adj_height + '">');
                         is_svg = true;
                     }
@@ -328,13 +324,12 @@ CKEDITOR.dialog.add('jimageDialog', function(editor) {
                 if (!is_svg) {
                     img_info.adj_width = 300;
                     var minmax = '';
-                    if (img_info.image_width > img_info.image_height) {
-                        img_info.adj_height = Math.round(img_info.adj_width / img_info.image_ratio);
-                    } else {
+
+                    img_info.adj_height = Math.round(img_info.adj_width / img_info.image_ratio);
+                    if (img_info.image_width < img_info.image_height) {
                         minmax = '&m=1';
-                        img_info.adj_height = Math.round(img_info.adj_width * img_info.image_ratio);
                     }
-                    
+
                     jimage_html.push('  <img src="' + jimage_src + '?s=300' + minmax +'" sizes="100vw" srcset="' + jimage_src + '?s=700' + minmax +' 700w, ' + jimage_src + '?s=300' + minmax +' 300w" alt="' + jimage_alt + '" width="' + img_info.adj_width + '" height="' + img_info.adj_height + '">');
                 }
 

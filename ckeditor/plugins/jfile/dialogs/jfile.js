@@ -224,12 +224,11 @@ CKEDITOR.dialog.add('jfileDialog', function(editor) {
                     img_info.adj_width = jfile_thumbsize;
                     var minmax = '';
 
-                    if (img_info.image_width > img_info.image_height) {
-                        img_info.adj_height = Math.round(img_info.adj_width * img_info.image_ratio);
-                    } else {
+                    img_info.adj_height = Math.round(img_info.adj_width / img_info.image_ratio);
+                    if (img_info.image_width < img_info.image_height) {
                         minmax = '&m=1';
-                        img_info.adj_height = Math.round(img_info.adj_width / img_info.image_ratio);
                     }
+
                     jfile_html.push('<img alt="' + alt + thumb_alt + '" src="' + jfile_href + '.png?s=' + jfile_thumbsize + minmax + '" width="' + img_info.adj_width + '" height="' + img_info.adj_height + '">');
 
                     if (!jfile_thumbonly) {
