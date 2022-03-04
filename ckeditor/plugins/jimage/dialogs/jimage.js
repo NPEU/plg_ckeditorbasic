@@ -327,13 +327,15 @@ CKEDITOR.dialog.add('jimageDialog', function(editor) {
 
                 if (!is_svg) {
                     img_info.adj_width = 300;
+                    var minmax = '';
                     if (img_info.image_width > img_info.image_height) {
                         img_info.adj_height = Math.round(img_info.adj_width / img_info.image_ratio);
                     } else {
+                        minmax = '&m=1';
                         img_info.adj_height = Math.round(img_info.adj_width * img_info.image_ratio);
                     }
                     
-                    jimage_html.push('  <img src="' + jimage_src + '?s=300" sizes="100vw" srcset="' + jimage_src + '?s=700 700w, ' + jimage_src + '?s=300 300w" alt="' + jimage_alt + '" width="' + img_info.adj_width + '" height="' + img_info.adj_height + '">');
+                    jimage_html.push('  <img src="' + jimage_src + '?s=300' + minmax +'" sizes="100vw" srcset="' + jimage_src + '?s=700' + minmax +' 700w, ' + jimage_src + '?s=300' + minmax +' 300w" alt="' + jimage_alt + '" width="' + img_info.adj_width + '" height="' + img_info.adj_height + '">');
                 }
 
 

@@ -222,13 +222,15 @@ CKEDITOR.dialog.add('jfileDialog', function(editor) {
                     var img_info = JSON.parse(CKEDITOR.ajax.load(jfile_href + '.png.json'));
                     img_info.image_ratio = img_info.image_width / img_info.image_height;
                     img_info.adj_width = jfile_thumbsize;
+                    var minmax = '';
 
                     if (img_info.image_width > img_info.image_height) {
                         img_info.adj_height = Math.round(img_info.adj_width * img_info.image_ratio);
                     } else {
+                        minmax = '&m=1';
                         img_info.adj_height = Math.round(img_info.adj_width / img_info.image_ratio);
                     }
-                    jfile_html.push('<img alt="' + alt + thumb_alt + '" src="' + jfile_href + '.png?s=' + jfile_thumbsize + '" width="' + img_info.adj_width + '" height="' + img_info.adj_height + '">');
+                    jfile_html.push('<img alt="' + alt + thumb_alt + '" src="' + jfile_href + '.png?s=' + jfile_thumbsize + minmax + '" width="' + img_info.adj_width + '" height="' + img_info.adj_height + '">');
 
                     if (!jfile_thumbonly) {
                         jfile_html.push('<br>');
