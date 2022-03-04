@@ -53,7 +53,7 @@ CKEDITOR.dialog.add('jfileDialog', function(editor) {
                             // Update the url so that the correct folder is loaded into the
                             // modal for better UX for existing files:
                             var cur_val = this.getValue();
-                            
+
                             if (cur_val == '') {
                                 return;
                             }
@@ -156,7 +156,7 @@ CKEDITOR.dialog.add('jfileDialog', function(editor) {
                 }
             }
 
-            console.log('jfile_data', jfile_data);
+            //console.log('jfile_data', jfile_data);
 
             // Remove cke_reset_all
             jQuery('.cke_dialog_container').removeClass('cke_reset_all');
@@ -218,7 +218,17 @@ CKEDITOR.dialog.add('jfileDialog', function(editor) {
                     var alt = jfile_thumbonly
                             ? jfile_text + '. '
                             : '';
-                    jfile_html.push('<img alt="' + alt + thumb_alt + '" src="' + jfile_href + '.png?s=' + jfile_thumbsize + '" width="' + jfile_thumbsize + '">');
+
+                    var img_info = JSON.parse(CKEDITOR.ajax.load(jfile_href + '.png.json'));
+                    img_info.image_ratio = img_info.image_width / img_info.image_height;
+                    img_info.adj_width = jfile_thumbsize;
+
+                    if (img_info.image_width > img_info.image_height) {
+                        img_info.adj_height = Math.round(img_info.adj_width * img_info.image_ratio);
+                    } else {
+                        img_info.adj_height = Math.round(img_info.adj_width / img_info.image_ratio);
+                    }
+                    jfile_html.push('<img alt="' + alt + thumb_alt + '" src="' + jfile_href + '.png?s=' + jfile_thumbsize + '" width="' + img_info.adj_width + '" height="' + img_info.adj_height + '">');
 
                     if (!jfile_thumbonly) {
                         jfile_html.push('<br>');
