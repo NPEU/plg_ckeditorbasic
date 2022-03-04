@@ -302,6 +302,10 @@ CKEDITOR.dialog.add('jimageDialog', function(editor) {
 
                 // Image:
                 var is_svg = false;
+                
+                // Get image info:
+                var img_info = JSON.parse(CKEDITOR.ajax.load(jimage_src + '.json'));
+                img_info.image_ratio = img_info.image_width / img_info.image_height;
 
                 // If the image is PNG, look to see if there's an SVG equivalent:
                 if (jimage_src.match(/\.png$/)) {
@@ -309,13 +313,27 @@ CKEDITOR.dialog.add('jimageDialog', function(editor) {
                     var svg = CKEDITOR.ajax.load(jimage_svg_src);
 
                     if (svg !== null && svg.match(/^<svg/)) {
-                        jimage_html.push('  <img src="' + jimage_svg_src + '" onerror="this.src=\'' + jimage_src + '\'; this.onerror=null;" alt="' + jimage_alt + '" class="u-image-cover__image" height="80">');
+                        img_info.adj_height = 80;
+                        if (img_info.image_width > img_info.image_height) {
+                            img_info.adj_width = Math.round(img_info.adj_height * img_info.image_ratio);
+                        } else {
+                            img_info.adj_width = Math.round(img_info.adj_height / img_info.image_ratio);
+                        }
+                        
+                        jimage_html.push('  <img src="' + jimage_svg_src + '" onerror="this.src=\'' + jimage_src + '\'; this.onerror=null;" alt="' + jimage_alt + '" width="' + img_info.adj_width + '" height="' + img_info.adj_height + '">');
                         is_svg = true;
                     }
                 }
 
                 if (!is_svg) {
-                    jimage_html.push('  <img src="' + jimage_src + '?s=300" sizes="100vw" srcset="' + jimage_src + '?s=700 700w, ' + jimage_src + '?s=300 300w" alt="' + jimage_alt + '" class="u-image-cover__image" width="300">');
+                    img_info.adj_width = 300;
+                    if (img_info.image_width > img_info.image_height) {
+                        img_info.adj_height = Math.round(img_info.adj_width / img_info.image_ratio);
+                    } else {
+                        img_info.adj_height = Math.round(img_info.adj_width * img_info.image_ratio);
+                    }
+                    
+                    jimage_html.push('  <img src="' + jimage_src + '?s=300" sizes="100vw" srcset="' + jimage_src + '?s=700 700w, ' + jimage_src + '?s=300 300w" alt="' + jimage_alt + '" width="' + img_info.adj_width + '" height="' + img_info.adj_height + '">');
                 }
 
 
@@ -337,7 +355,7 @@ CKEDITOR.dialog.add('jimageDialog', function(editor) {
 
                 jimage_html.push('</figure>');
 
-                editor.insertHtml(jimage_html.join("\n"));
+                editor.insertHtml(jimage_html.join("\n\n"));
             } else {
                 editor.insertHtml('');
             }
