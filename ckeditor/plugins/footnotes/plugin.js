@@ -207,7 +207,7 @@
 
         generateFootnoteId: function() {
             var id = Math.random().toString(36).substr(2, 5);
-            while ($.inArray(id, this.footnote_ids) != -1) {
+            while (CKEDITOR.tools.indexOf(this.footnote_ids, id) != -1) {
                 id = String(this.generateFootnoteId());
             }
             this.footnote_ids.push(id);
@@ -235,7 +235,7 @@
 
             // Find all the markers in the document:
             var markers = contents.find('sup[data-footnote-id]').toArray();
-            
+
             // If there aren't any, remove the Footnotes container:
             if (markers.length == 0) {
                 contents.findOne('.footnotes').getParent().remove();
