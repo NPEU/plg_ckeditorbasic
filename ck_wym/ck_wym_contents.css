@@ -3,6 +3,10 @@
     color: #333 !important;
 }
 
+.cke_editable.footnote_editor {
+    box-shadow: 0 0 0 100vmax #fff inset, 0 0 0 8px #fff, 0 0 0 9px #ddd;
+}
+
 .cke_editable a[href] {
     color: #333 !important;
 }
@@ -45,7 +49,7 @@
 
 
 .cke_editable details:last-child,
-.cke_editable summary:last-child, 
+.cke_editable summary:last-child,
 .cke_editable p:last-child,
 .cke_editable h2:last-child,
 .cke_editable h3:last-child,
@@ -68,7 +72,7 @@
 .cke_editable div[data-display-as*="box"]:last-child,
 .cke_editable div[data-display-as="themed"]:last-child {
     margin-bottom: 0 !important;
-    
+
 }
 
 .cke_editable div[data-extra-wrapper] > * {
@@ -99,7 +103,7 @@
     background: #ddd;
 }
 
-/* 
+/*
     This is related to user_css, but the selectors here override those selectors so adding stuff here
     for now. Need to find a better way of handling this.
     Specifically relates the 'div' blocks.
@@ -236,6 +240,10 @@
 
 .cke_editable div[data-display-as="breakout-box"]::before {
     content: "BREAKOUT BOX" !important;
+}
+
+.cke_editable div[data-display-as="breakout-box"][data-display-is="figure"]::before {
+    content: "BREAKOUT BOX (FIGURE)" !important;
 }
 
 .cke_editable div[data-display-as="blocks"]::before {
