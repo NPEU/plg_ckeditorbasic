@@ -36,7 +36,7 @@
                             id: 'new_footnote',
                             'class': 'footnote_text',
                             label: 'New footnote:',
-                            inputStyle: 'height: 100px',
+                            inputStyle: 'height: 100px'
                         },
                         {
                             // Text input field for the footnotes title (explanation).
@@ -52,11 +52,11 @@
                                     editor    = dialog.getParentEditor(),
                                     el        = dialog.getElement().findOne('#' + this.domId),
                                     footnotes = editor.editable().findOne('.footnotes ol');
-                                    
+
                                 dialog.dialog_dom_id = this.domId;
 
                                 if (footnotes !== null) {
-                                    
+
                                     if (el.findOne('p') === null) {
                                         el.appendHtml('<p style="margin-bottom: 10px;"><strong>OR:</strong> Choose footnote:</p><ol class="footnotes_list"></ol>');
                                     } else {
@@ -66,7 +66,7 @@
                                     }
 
                                     var radios = '';
-                                    
+
                                     footnotes.find('li').toArray().forEach(function(item){
 
                                         var footnote_id = item.getAttribute('data-footnote-id');
@@ -149,6 +149,7 @@
                     config.resize_enabled = false;
                     config.autoGrow_minHeight = 80;
                     config.removePlugins = 'footnotes';
+                    config.bodyClass = 'footnote_editor';
 
                     // If we focus on the dialog editor we should clear the radios to avoid any
                     // confusion. Similarly, if we focus on a radio, we should clear the editor
@@ -173,7 +174,7 @@
                 var footnote_editor = CKEDITOR.instances[dialog.editor_name];
                 var footnote_id     = dialog.getValueOf('tab-basic', 'footnote_id');
                 var footnote_data   = footnote_editor.getData();
-                
+
 
                 if (footnote_id == '') {
                     // No existing id selected, check for new footnote:
