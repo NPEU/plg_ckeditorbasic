@@ -141,6 +141,19 @@ CKEDITOR.dialog.add('jimageDialog', function(editor) {
                         commit: function(jimage_data) {
                             jimage_data.hasCaption = this.getValue();
                         }
+                    },
+                    {
+                        type: 'radio',
+                        id: 'no_height_limit',
+                        label: 'Remove height limit?',
+                        items: [ [ 'Yes', 'yes' ], [ 'No', 'no' ] ],
+                        controlStyle: 'width: 8em; display: inline-block; vertical-align: middle;',
+                        inputStyle: 'margin: 0; vertical-align: middle',
+                        labelStyle: 'vertical-align: middle; width: 10em',
+                        'default': 'no',
+                        setup: function(jimage_data) {
+                            this.setValue(jimage_data.no_height_limit);
+                        }
                     }
                 ]
             }
@@ -192,6 +205,7 @@ CKEDITOR.dialog.add('jimageDialog', function(editor) {
                     jimage_data.link = jimage__a ? jimage__a.getAttribute('href') : '';
 
                     jimage_data.person_portrait = (jimage__data_contains.indexOf('portrait') !== -1) ? 'yes' : 'no';
+                    jimage_data.no_height_limit = (jimage__data_contains.indexOf('no-height-limit') !== -1) ? 'yes' : 'no';
 
                     jimage_data.logo = 'no';
                     if (jimage__data_contains.match('logo')) {
@@ -219,6 +233,7 @@ CKEDITOR.dialog.add('jimageDialog', function(editor) {
                             caption_html = caption.getHtml();
                         }
                     }
+
 
                 }
             }
@@ -251,19 +266,24 @@ CKEDITOR.dialog.add('jimageDialog', function(editor) {
             }
             jimage_src = CKEDITOR.tools.trim(jimage_src).split('?')[0];
 
-            var jimage_alt      = CKEDITOR.tools.trim(dialog.getValueOf('tab--settings', 'alt'));
-            var jimage_link     = CKEDITOR.tools.trim(dialog.getValueOf('tab--settings', 'link'));
-            var jimage_portrait = CKEDITOR.tools.trim(dialog.getValueOf('tab--settings', 'person_portrait'));
-            var jimage_logo     = CKEDITOR.tools.trim(dialog.getValueOf('tab--settings', 'logo'));
-            var jimage_width    = CKEDITOR.tools.trim(dialog.getValueOf('tab--settings', 'width'));
-            var jimage_position = CKEDITOR.tools.trim(dialog.getValueOf('tab--settings', 'position'));
-            var jimage_border   = CKEDITOR.tools.trim(dialog.getValueOf('tab--settings', 'border'));
-            var jimage_caption  = dialog.getValueOf('tab--settings', 'hasCaption');
+            var jimage_alt             = CKEDITOR.tools.trim(dialog.getValueOf('tab--settings', 'alt'));
+            var jimage_link            = CKEDITOR.tools.trim(dialog.getValueOf('tab--settings', 'link'));
+            var jimage_portrait        = CKEDITOR.tools.trim(dialog.getValueOf('tab--settings', 'person_portrait'));
+            var jimage_no_height_limit = CKEDITOR.tools.trim(dialog.getValueOf('tab--settings', 'no_height_limit'));
+            var jimage_logo            = CKEDITOR.tools.trim(dialog.getValueOf('tab--settings', 'logo'));
+            var jimage_width           = CKEDITOR.tools.trim(dialog.getValueOf('tab--settings', 'width'));
+            var jimage_position        = CKEDITOR.tools.trim(dialog.getValueOf('tab--settings', 'position'));
+            var jimage_border          = CKEDITOR.tools.trim(dialog.getValueOf('tab--settings', 'border'));
+            var jimage_caption         = dialog.getValueOf('tab--settings', 'hasCaption');
 
             var contains = "image"
 
             if (jimage_portrait == 'yes') {
                 contains += ' portrait';
+            }
+
+            if (jimage_no_height_limit == 'yes') {
+                contains += ' no-height-limit';
             }
 
             if (jimage_logo != 'no') {
