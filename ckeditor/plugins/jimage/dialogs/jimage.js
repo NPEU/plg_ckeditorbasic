@@ -154,6 +154,19 @@ CKEDITOR.dialog.add('jimageDialog', function(editor) {
                         setup: function(jimage_data) {
                             this.setValue(jimage_data.no_height_limit);
                         }
+                    },
+                    {
+                        type: 'radio',
+                        id: 'no_clear',
+                        label: 'Remove next<br>block clearing?',
+                        items: [['Yes', 'yes'], ['No', 'no']],
+                        controlStyle: 'width: 8em; display: inline-block; vertical-align: middle;',
+                        inputStyle: 'margin: 0; vertical-align: middle',
+                        labelStyle: 'vertical-align: middle; width: 10em',
+                        'default': 'no',
+                        setup: function(jimage_data) {
+                            this.setValue(jimage_data.no_clear);
+                        }
                     }
                 ]
             }
@@ -217,6 +230,8 @@ CKEDITOR.dialog.add('jimageDialog', function(editor) {
 
                     jimage_data.position = jimage__data_display_is.match(/pulled-(.*?)(\s|$)/)[1];
 
+                    jimage_data.no_clear = (jimage__data_display_is.indexOf('non-clearing') !== -1) ? 'yes' : 'no';
+
                     jimage_data.border = (jimage.findOne('b')) ? 'tight' : 'none';
                     jimage_data.border = (jimage.findOne('i')) ? 'spaced' : jimage_data.border;
 
@@ -273,6 +288,7 @@ CKEDITOR.dialog.add('jimageDialog', function(editor) {
             var jimage_logo            = CKEDITOR.tools.trim(dialog.getValueOf('tab--settings', 'logo'));
             var jimage_width           = CKEDITOR.tools.trim(dialog.getValueOf('tab--settings', 'width'));
             var jimage_position        = CKEDITOR.tools.trim(dialog.getValueOf('tab--settings', 'position'));
+            var jimage_no_clear        = CKEDITOR.tools.trim(dialog.getValueOf('tab--settings', 'no_clear'));
             var jimage_border          = CKEDITOR.tools.trim(dialog.getValueOf('tab--settings', 'border'));
             var jimage_caption         = dialog.getValueOf('tab--settings', 'hasCaption');
 
@@ -293,8 +309,12 @@ CKEDITOR.dialog.add('jimageDialog', function(editor) {
 
             if (jimage_src != '') {
                 var jimage_html = [];
+                var jimage_non_clearing = '';
 
-                jimage_html.push('<figure data-display-is="width-' + jimage_width + '  pulled-' + jimage_position + '">');
+                if (jimage_no_clear == 'yes') {
+                    jimage_non_clearing = '  non-clearing';
+                }
+                jimage_html.push('<figure data-display-is="width-' + jimage_width + '  pulled-' + jimage_position + jimage_non_clearing + '">');
 
                 if (jimage_link !== '') {
                     var rel = '';
