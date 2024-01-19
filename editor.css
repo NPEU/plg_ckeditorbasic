@@ -43,6 +43,375 @@ textarea.cke_dialog_ui_input_textarea {
   z-index: 10050 !important;
 }
 
+
+
+
+.cke_button:not(.cke_button_on):hover {
+    padding: 4px 6px;
+}
+.cke_combo_button:hover {
+    padding: 1px !important;
+    margin-left: 0 !important;
+}
+
+
+
+
+.field-media-wrapper .field-media-preview {
+    width: auto;
+}
+
+/* Reinstate Joomla form styles */
+
+.cke_reset_all .field-media-wrapper .form-control {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--body-color);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: var(--body-bg);
+    background-clip: padding-box;
+    border: var(--border-width) solid var(--template-bg-dark-20);
+    border-radius: var(--border-radius);
+    -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+}
+
+.cke_reset_all .field-media-wrapper .input-group > .form-control {
+    width: 1%;
+}
+
+.cke_reset_all .field-media-wrapper .btn {
+    --btn-padding-x: 1rem;
+    --btn-padding-y: 0.5rem;
+    --btn-font-family: ;
+    --btn-font-size: 1rem;
+    --btn-font-weight: 400;
+    --btn-line-height: 1.5;
+    --btn-color: var(--body-color);
+    --btn-bg: transparent;
+    --btn-border-width: var(--border-width);
+    --btn-border-color: transparent;
+    --btn-border-radius: 0.25rem;
+    --btn-hover-border-color: transparent;
+    --btn-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
+    --btn-disabled-opacity: 0.4;
+    --btn-focus-box-shadow: 0 0 0 0.2rem rgba(var(--btn-focus-shadow-rgb), .5);
+    display: inline-block;
+    padding: var(--btn-padding-y) var(--btn-padding-x);
+    font-family: var(--btn-font-family);
+    font-size: var(--btn-font-size);
+    font-weight: var(--btn-font-weight);
+    line-height: var(--btn-line-height);
+    color: var(--btn-color);
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: var(--btn-border-width) solid var(--btn-border-color);
+    border-radius: var(--btn-border-radius);
+    background-color: var(--btn-bg);
+    -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+}
+
+.cke_reset_all .field-media-wrapper .btn-success {
+    --btn-color: #fff;
+    --btn-bg: #457d54;
+    --btn-border-color: #457d54;
+    --btn-hover-color: #fff;
+    --btn-hover-bg: #3b6a47;
+    --btn-hover-border-color: #376443;
+    --btn-focus-shadow-rgb: 97, 145, 110;
+    --btn-active-color: #fff;
+    --btn-active-bg: #376443;
+    --btn-active-border-color: #345e3f;
+    --btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --btn-disabled-color: #fff;
+    --btn-disabled-bg: #457d54;
+    --btn-disabled-border-color: #457d54;
+}
+
+.cke_reset_all .field-media-wrapper .modal .btn-primary:not([href]),
+.cke_reset_all .field-media-wrapper .modal .btn-success:not([href]),
+.cke_reset_all .field-media-wrapper .modal .btn-danger:not([href]),
+.cke_reset_all .field-media-wrapper .modal .btn-secondary:not([href]) {
+    color: var(--template-text-dark);
+    background: var(--white);
+    border: 1px solid var(--template-text-dark);
+}
+
+
+.cke_reset_all .field-media-wrapper .modal {
+    --modal-zindex: 1050;
+    --modal-width: 500px;
+    --modal-padding: 1rem;
+    --modal-margin: 0.5rem;
+    --modal-color: ;
+    --modal-bg: var(--body-bg);
+    --modal-border-color: var(--border-color-translucent);
+    --modal-border-width: var(--border-width);
+    --modal-border-radius: var(--border-radius-lg);
+    --modal-box-shadow: var(--box-shadow-sm);
+    --modal-inner-border-radius: calc(var(--border-radius-lg) - (var(--border-width)));
+    --modal-header-padding-x: 1rem;
+    --modal-header-padding-y: 1rem;
+    --modal-header-padding: 1rem 1rem;
+    --modal-header-border-color: var(--border-color);
+    --modal-header-border-width: var(--border-width);
+    --modal-title-line-height: 1.5;
+    --modal-footer-gap: 0.5rem;
+    --modal-footer-bg: ;
+    --modal-footer-border-color: var(--border-color);
+    --modal-footer-border-width: var(--border-width);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: var(--modal-zindex);
+    display: none;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    outline: 0;
+}
+
+
+.cke_reset_all .field-media-wrapper .modal-dialog {
+    position: relative;
+    width: auto;
+    margin: var(--modal-margin);
+    pointer-events: none;
+}
+
+@media (min-width: 576px) {
+    .cke_reset_all .field-media-wrapper .modal-dialog {
+        max-width: var(--modal-width);
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
+
+
+.cke_reset_all .field-media-wrapper .modal-content {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    color: var(--modal-color);
+    pointer-events: auto;
+    background-color: var(--modal-bg);
+    background-clip: padding-box;
+    border: var(--modal-border-width) solid var(--modal-border-color);
+    border-radius: var(--modal-border-radius);
+    outline: 0;
+}
+
+.cke_reset_all .field-media-wrapper .modal-header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: var(--modal-header-padding);
+    border-bottom: var(--modal-header-border-width) solid var(--modal-header-border-color);
+    border-top-left-radius: var(--modal-inner-border-radius);
+    border-top-right-radius: var(--modal-inner-border-radius);
+}
+
+.cke_reset_all .field-media-wrapper .modal-header {
+    padding: 0 15px;
+}
+
+.cke_reset_all .field-media-wrapper .modal-body {
+    position: relative;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: var(--modal-padding);
+}
+
+
+.cke_reset_all .field-media-wrapper .modal-title {
+    font-weight: 400;
+    line-height: 2.875rem;
+}
+
+
+.cke_reset_all .field-media-wrapper .modal-footer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    padding: calc(var(--modal-padding) - var(--modal-footer-gap) * 0.5);
+    background-color: var(--modal-footer-bg);
+    border-top: var(--modal-footer-border-width) solid var(--modal-footer-border-color);
+    border-bottom-right-radius: var(--modal-inner-border-radius);
+    border-bottom-left-radius: var(--modal-inner-border-radius);
+}
+
+
+
+.cke_reset_all .field-media-wrapper .btn-close {
+    --btn-close-color: #000;
+    --btn-close-bg: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e);
+    --btn-close-opacity: 0.5;
+    --btn-close-hover-opacity: 0.75;
+    --btn-close-focus-shadow: 0 0 0 0.25rem rgba(42, 105, 183, 0.25);
+    --btn-close-focus-opacity: 1;
+    --btn-close-disabled-opacity: 0.25;
+    --btn-close-white-filter: invert(1) grayscale(100%) brightness(200%);
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    width: 1em;
+    height: 1em;
+    padding: 0.25em 0.25em;
+    color: var(--btn-close-color);
+    background: transparent var(--btn-close-bg) center/1em auto no-repeat;
+    border: 0;
+    border-radius: 0.25rem;
+    opacity: var(--btn-close-opacity);
+    font-size: var(--body-font-size);
+}
+
+.cke_reset_all .field-media-wrapper h3 {
+    font-size: 1.25rem;
+}
+
+.cke_reset_all .field-media-wrapper .modal-header .btn-close {
+    padding: calc(var(--modal-header-padding-y) * 0.5) calc(var(--modal-header-padding-x) * 0.5);
+    margin: calc(-0.5 * var(--modal-header-padding-y)) calc(-0.5 * var(--modal-header-padding-x)) calc(-0.5 * var(--modal-header-padding-y)) auto;
+}
+
+
+.cke_reset_all .field-media-wrapper .jviewport-height10 {
+    height: 10vh;
+}
+.cke_reset_all .field-media-wrapper .jviewport-height20 {
+    height: 20vh;
+}
+
+.cke_reset_all .field-media-wrapper .jviewport-height30 {
+    height: 30vh;
+}
+
+.cke_reset_all .field-media-wrapper .jviewport-height40 {
+    height: 40vh;
+}
+
+.cke_reset_all .field-media-wrapper .jviewport-height50 {
+    height: 50vh;
+}
+
+.cke_reset_all .field-media-wrapper .jviewport-height60 {
+    height: 60vh;
+}
+
+.cke_reset_all .field-media-wrapper .jviewport-height70 {
+    height: 70vh;
+}
+
+.cke_reset_all .field-media-wrapper .jviewport-height80 {
+    height: 80vh;
+}
+
+.cke_reset_all .field-media-wrapper .jviewport-height90 {
+    height: 90vh;
+}
+
+.cke_reset_all .field-media-wrapper .jviewport-height100 {
+    height: 100vh;
+}
+
+.cke_reset_all .field-media-wrapper [class*="jviewport-height"] iframe {
+    height: 100%;
+}
+
+.cke_reset_all .field-media-wrapper .modal-dialog.jviewport-width10 {
+    width: 10vw;
+    max-width: none;
+}
+
+.cke_reset_all .field-media-wrapper .modal-dialog.jviewport-width20 {
+    width: 20vw;
+    max-width: none;
+}
+
+.cke_reset_all .field-media-wrapper .modal-dialog.jviewport-width30 {
+    width: 30vw;
+    max-width: none;
+}
+
+.cke_reset_all .field-media-wrapper .modal-dialog.jviewport-width40 {
+    width: 40vw;
+    max-width: none;
+}
+.modal-dialog.jviewport-width50 {
+    width: 50vw;
+    max-width: none;
+}
+
+.cke_reset_all .field-media-wrapper .modal-dialog.jviewport-width60 {
+    width: 60vw;
+    max-width: none;
+}
+
+.cke_reset_all .field-media-wrapper .modal-dialog.jviewport-width70 {
+    width: 70vw;
+    max-width: none;
+}
+
+.cke_reset_all .field-media-wrapper .modal-dialog.jviewport-width80 {
+    width: 80vw;
+    max-width: none;
+}
+
+.cke_reset_all .field-media-wrapper .modal-dialog.jviewport-width90 {
+    width: 90vw;
+    max-width: none;
+}
+
+.cke_reset_all .field-media-wrapper .modal-dialog.jviewport-width100 {
+    width: 100vw;
+    max-width: none;
+}
+
+
+
+
+
 /*
 .cke_toolbox {
     display: flex !important;

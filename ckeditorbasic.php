@@ -1,8 +1,27 @@
 <?php
+
+/**
+ * @package     Joomla.Plugin
+ * @subpackage  Editors.ckeditor
+ *
+ * @copyright   Copyright (C) NPEU 2019.
+ * @license     MIT License; see LICENSE.md
+
+ */
+
+
+use Joomla\CMS\Layout\LayoutHelper;
+use Joomla\CMS\Plugin\CMSPlugin;
+//use Joomla\CMS\Plugin\PluginHelper;
+use Joomla\Event\Event;
+
+
 /**
  */
 #ini_set('display_errors', 'on');
 defined('_JEXEC') or die;
+
+
 
 /**
  * CKEditor Plugin
@@ -17,12 +36,12 @@ class PlgEditorCKEditorBasic extends JPlugin
 	 * Base path for editor files
 	 */
 	protected $_basePath = 'plugins/editors/ckeditorbasic';
-    
-    
-    
+
+
+
     public $called = false;
 
-    
+
     /**
 	 * Constructor
 	 *
@@ -46,19 +65,19 @@ class PlgEditorCKEditorBasic extends JPlugin
 	 */
 	public function onInit() {
         $document = JFactory::getDocument();
-        // This loads all the necessary JS for the Media viewer. It's not great that it's here, 
+        // This loads all the necessary JS for the Media viewer. It's not great that it's here,
         // because it's only used by the jimage plugin. However, there's nowhere else to put PHP
         // since all CKEditor plugins are JS based.
         // Mediafield required JQuery
-        
+
         $app = JFactory::getApplication();
-        
+
         if (!$app->isClient('administrator')) {
             $document->addScript(JUri::root() . 'media/jui/js/jquery.min.js');
             JHtml::_('script', 'media/mediafield.min.js', array('version' => 'auto', 'relative' => true));
         }
         #echo 'here'; exit;
-        
+
 		//$document->addStyleSheet(JUri::root() . $this->_basePath . '/ckeditor.css');
         $script = array();
         if (strpos(JPATH_BASE, 'administrator') === false) {
@@ -81,40 +100,40 @@ class PlgEditorCKEditorBasic extends JPlugin
             $script[] = '        }';
             $script[] = '    })';
         }
-        
+
         $script = implode("\n", $script);
-            
+
         $script .= file_get_contents(__DIR__ . '/setup.js');
         $document->addScriptDeclaration($script);
-        
-        
+
+
         $document->addScript(JUri::root() . $this->_basePath . '/ckeditor/ckeditor.js');
         $document->addScript(JUri::root() . $this->_basePath . '/jplugins.js');
         // Add sticky js
         #$document->addScript(JUri::root() . 'js/vendor/sticky.js');
         // Add any custom JS files:
         $js_files = $this->params->get('jsfiles', '');
-        
+
         //$js_files = '__DIR__/ck_wym/ck_wym.js';
         //$js_files = '__DIR__/ck_extras/ck_extras.js';
-        
+
         //__DIR__/ck_wym/ck_wym.js __DIR__/ck_extras/ck_extras.js
         //echo '<pre>'; var_dump($js_files); echo '</pre>';exit;
         //echo '<pre>'; var_dump(JPATH_BASE); echo '</pre>';exit;
         //return '';
         if (!empty($js_files)) {
             $js_files = explode("\n", str_replace("\r", '', $js_files));
-            foreach ($js_files as $file) {                
+            foreach ($js_files as $file) {
                 if ($file = realpath(str_replace('__DIR__', __DIR__, $file))) {
                     $file = str_replace(array(JPATH_ROOT, '//', ':/'), array(JUri::root(), '/', '://'), $file);
                     $document->addScript($file);
                 }
             }
         }
-        
+
         return '';
     }
-    
+
     /**
 	 * Display the editor area.
 	 *
@@ -135,9 +154,9 @@ class PlgEditorCKEditorBasic extends JPlugin
         #echo '<pre>'; var_dump(func_get_args()); echo '</pre>';exit;
         $return = '';
         require('js-vars.php');
-        
+
         //$jplugins_path = JUri::root() . $this->_basePath . '/plugins';
-        
+
         if ((int) $width) {
 			$width .= 'px';
 		}
@@ -145,8 +164,9 @@ class PlgEditorCKEditorBasic extends JPlugin
 			$height .= 'px';
 		}
 		$return .= '<textarea name="'.$name.'" id="'.$id.'" cols="'.$col.'" rows="'.$row.'" style="width:'.$width.'; height:'.$height.'">' . $content . '</textarea>' . "\n";
-		$return .= $this->_displayButtons($id, $buttons, $asset, $author);
-        
+		//$return .= $this->_displayButtons($id, $buttons, $asset, $author);
+		$return .= $this->displayButtons($id, $buttons, $asset, $author);
+
         $return .= "<script type=\"text/javascript\">\n";
         #echo '<pre>'; var_dump(get_defined_constants(true)); echo '</pre>';exit;
         if (strpos(JPATH_BASE, 'administrator') !== false) {
@@ -154,9 +174,9 @@ class PlgEditorCKEditorBasic extends JPlugin
             /*foreach ($vars as $name => $value) {
                 $script .= "var $name = $value;\n";
             }*/
-            $script .= "    CKEDITOR.timestamp='202202101430';
+            $script .= "    CKEDITOR.timestamp='202312051032';
         jQuery(function() {
-        CKEDITOR.replace('" . $name . "', {   
+        CKEDITOR.replace('" . $name . "', {
             customConfig: 'customConfig.js',
         });
     });";
@@ -171,7 +191,7 @@ editors.push(" . $value . ");\n";
         $return .= "</script>\n";
         return $return;
     }
-    
+
 	/**
 	 * Get the editor content
 	 *
@@ -216,18 +236,18 @@ editors.push(" . $value . ");\n";
 	 */
 	public function onGetInsertMethod($name) {
         $document =  JFactory::getDocument();
-        
+
         $url = str_replace('administrator/', '', JURI::base() );
 		$js = "
             function IeCursorFix()
 			{
-				/* 
+				/*
                 This function is called onclick set on buttons in: /layouts/joomla/editors/buttons/button.php
                 Need to the editor with IE to see if I need to implement anything here.
                 */
 				return true;
 			}
-            
+
             function jInsertEditorText(text, editor) {
                 text = text.replace( /<img src=\"/, '<img src=\"".$url."' );
                 //console.log(CKEDITOR.instances[editor]);
@@ -235,10 +255,10 @@ editors.push(" . $value . ");\n";
                 CKEDITOR.instances[editor].insertHtml(text);
            }";
 		$document->addScriptDeclaration($js);
-        
+
 		return true;
 	}
-    
+
     /**
 	 * Displays the editor buttons.
 	 *
@@ -249,7 +269,7 @@ editors.push(" . $value . ");\n";
 	 *
 	 * @return  string HTML
 	 */
-	private function _displayButtons($name, $buttons, $asset, $author) {
+	/*private function _displayButtons($name, $buttons, $asset, $author) {
 		$return = '';
 
 		$args = array(
@@ -274,6 +294,36 @@ editors.push(" . $value . ");\n";
 		}
 
 		return $return;
-	}
+	}*/
+
+
+
+	/**
+     * Displays the editor buttons.
+     *
+     * @param   string  $name     Button name.
+     * @param   mixed   $buttons  [array with button objects | boolean true to display buttons]
+     * @param   mixed   $asset    Unused.
+     * @param   mixed   $author   Unused.
+     *
+     * @return  string|void
+     */
+    protected function displayButtons($name, $buttons, $asset, $author)
+    {
+        if (is_array($buttons) || (is_bool($buttons) && $buttons)) {
+            $buttonsEvent = new Event(
+                'getButtons',
+                [
+                    'editor'  => $name,
+                    'buttons' => $buttons,
+                ]
+            );
+
+            $buttonsResult = $this->getDispatcher()->dispatch('getButtons', $buttonsEvent);
+            $buttons       = $buttonsResult['result'];
+
+            return LayoutHelper::render('joomla.editors.buttons', $buttons);
+        }
+    }
 
 }
