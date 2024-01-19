@@ -53,7 +53,7 @@ class PlgEditorCKEditorBasic extends JPlugin
         
         $app = JFactory::getApplication();
         
-        if (!$app->isAdmin()) {
+        if (!$app->isClient('administrator')) {
             $document->addScript(JUri::root() . 'media/jui/js/jquery.min.js');
             JHtml::_('script', 'media/mediafield.min.js', array('version' => 'auto', 'relative' => true));
         }
